@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="Final Architecture" id="final-arch">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Security Agent Platform — Final Target Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="800" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="inputs" value="Inputs&#10;GitHub · GitLab · Bitbucket · Azure DevOps · PRs/MRs · Web UI · API · CLI · CI/CD · ZIP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="1520" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw" value="API Gateway&#10;AuthN/AuthZ · OAuth/SSO · Multi-tenant · Rate limiting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jobmgr" value="Job Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="440" y="130" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mq" value="Message Queue&#10;Redis Queue · RabbitMQ · Azure Service Bus · SQS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="340" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="coordinator" value="Coordinator Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="130" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="graphbox" value="LangGraph Orchestration — Final Agent Set (sole workflow engine)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="1520" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="Repo&#10;Ingestion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="60" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a2" value="Code&#10;Understanding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="205" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a3" value="SAST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="350" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a4" value="Secrets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="495" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a5" value="Dependency&#10;/ SCA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="640" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a6" value="IaC / Cloud&#10;Security" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="785" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a7" value="Threat&#10;Modeling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="930" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a8" value="Validation /&#10;Exploitability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="1075" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a9" value="Remediation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="1220" y="245" width="130" height="50" as="geometry" /></mxCell>
+        <mxCell id="a10" value="Report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="1365" y="245" width="130" height="50" as="geometry" /></mxCell>
+
+        <mxCell id="tools" value="Tools &amp; MCP Integrations&#10;Semgrep · Bandit · Gitleaks · TruffleHog · pip-audit · Safety · OSV · Grype · Trivy · Checkov · Docker · Kubernetes · Cloud scanners&#10;MCP: GitHub · Azure DevOps · Jira · SonarQube · Confluence · Slack · Vault · Vulnerability DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="740" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="models" value="Model Management&#10;LiteLLM gateway · OpenAI · Azure OpenAI · Anthropic · Gemini · Ollama · specialized models&#10;Cost routing · token budgeting · fallback models · retry policy · model evaluation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="380" width="760" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rag" value="RAG / Knowledge Layer&#10;Security docs · coding standards · historical findings · remediation patterns · CWE/OWASP/CVE · org policies&#10;Vector DB: pgvector · Qdrant · Azure AI Search" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="740" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="data" value="Data &amp; Persistence&#10;PostgreSQL · Redis · Object storage (evidence/reports/artifacts/logs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="800" y="480" width="760" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="otel" value="Observability&#10;OTel SDK + Collector · Prometheus · Grafana · Loki/OpenSearch · Tempo/Jaeger&#10;optional: LangSmith · MLflow/Phoenix · Azure Monitor/App Insights · CloudWatch/X-Ray · Datadog · New Relic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="570" width="1520" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="outputs" value="Outputs&#10;JSON findings · Markdown report · SARIF · remediation patches · PR creation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="660" width="1520" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mvpnote" value="Bold-bordered boxes = implemented in the MVP (possibly as a subset). Other boxes = documented and interface-scaffolded, not fully implemented." style="text;html=1;fontSize=12;fontStyle=2;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="900" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ec1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="inputs" target="gw"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="gw" target="jobmgr"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="jobmgr" target="mq"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="mq" target="coordinator"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="coordinator" target="a1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="graphbox" target="tools"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="graphbox" target="models"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="models" target="rag"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="a10" target="outputs"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

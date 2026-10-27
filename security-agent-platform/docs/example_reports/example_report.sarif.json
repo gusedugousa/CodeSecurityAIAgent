@@ -1,0 +1,334 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "security-agent-platform",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/example-org/security-agent-platform",
+          "rules": [
+            {
+              "id": "bandit.sast",
+              "name": "bandit.sast",
+              "shortDescription": {
+                "text": "sast findings reported by bandit"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "bandit.sast",
+          "level": "error",
+          "message": {
+            "text": "subprocess call with shell=True identified, security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "high",
+            "confidence": "high",
+            "cwe": "CWE-78",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "error",
+          "message": {
+            "text": "A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 42,
+                  "endLine": 42
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "high",
+            "confidence": "medium",
+            "cwe": "CWE-94",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "error",
+          "message": {
+            "text": "Use of weak MD5 hash for security. Consider usedforsecurity=False"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py"
+                },
+                "region": {
+                  "startLine": 7,
+                  "endLine": 7
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "high",
+            "confidence": "high",
+            "cwe": "CWE-327",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "warning",
+          "message": {
+            "text": "Possible SQL injection vector through string-based query construction."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 19,
+                  "endLine": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "medium",
+            "confidence": "low",
+            "cwe": "CWE-89",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "warning",
+          "message": {
+            "text": "Use of possibly insecure function - consider using safer ast.literal_eval."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 34,
+                  "endLine": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "cwe": "CWE-78",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "warning",
+          "message": {
+            "text": "Possible binding to all interfaces."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 42,
+                  "endLine": 42
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "medium",
+            "confidence": "medium",
+            "cwe": "CWE-605",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "warning",
+          "message": {
+            "text": "Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "cwe": "CWE-502",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "note",
+          "message": {
+            "text": "Consider possible security implications associated with the subprocess module."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 4,
+                  "endLine": 4
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "low",
+            "confidence": "high",
+            "cwe": "CWE-78",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "note",
+          "message": {
+            "text": "Possible hardcoded password: 'SuperSecretPassword123!'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/app.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "low",
+            "confidence": "medium",
+            "cwe": "CWE-259",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "note",
+          "message": {
+            "text": "Consider possible security implications associated with pickle module."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "endLine": 3
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "low",
+            "confidence": "high",
+            "cwe": "CWE-502",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        },
+        {
+          "ruleId": "bandit.sast",
+          "level": "note",
+          "message": {
+            "text": "Possible hardcoded password: 'ghp_1234567890abcdefghijklmnopqrstuvwxyz12'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py"
+                },
+                "region": {
+                  "startLine": 14,
+                  "endLine": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "low",
+            "confidence": "medium",
+            "cwe": "CWE-259",
+            "owasp": null,
+            "source_agent": "sast",
+            "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5"
+          }
+        }
+      ]
+    }
+  ]
+}

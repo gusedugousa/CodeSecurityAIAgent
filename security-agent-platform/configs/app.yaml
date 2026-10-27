@@ -1,0 +1,35 @@
+# Application-level configuration.
+# Values here are defaults; environment variables (APP_*) override them at runtime.
+# See app/core/config.py for the loader.
+
+environment: local          # local | dev | staging | production
+log_level: INFO              # DEBUG | INFO | WARNING | ERROR
+storage_backend: sqlite      # sqlite | postgres
+database_url: "sqlite+aiosqlite:///./data/security_platform.db"
+redis_url: "redis://localhost:6379/0"
+workspace_dir: "./data/workspaces"
+reports_dir: "./data/reports"
+
+# Default analysis profile applied when the API request does not specify one.
+default_analysis_profile: "mvp-default"
+
+analysis_profiles:
+  mvp-default:
+    description: "Runs all MVP tool categories with remediation enabled."
+    enabled_agents:
+      - repo_ingestion
+      - sast
+      - secrets
+      - dependency
+      - remediation
+      - report
+    enable_remediation: true
+  fast-scan:
+    description: "Skips remediation for a quick findings-only pass."
+    enabled_agents:
+      - repo_ingestion
+      - sast
+      - secrets
+      - dependency
+      - report
+    enable_remediation: false

@@ -1,0 +1,443 @@
+{
+  "analysis_id": "b3587413-d137-4da1-abb8-f8ff5133b5e5",
+  "generated_at": "2026-07-02T15:52:33.313603+00:00",
+  "repository": {
+    "repo_url": null,
+    "branch": "main",
+    "commit_sha": null,
+    "local_path": "tests/fixtures/sample_vulnerable_repo",
+    "file_count": 5,
+    "total_size_bytes": 2658,
+    "primary_languages": [
+      "Python",
+      "Terraform"
+    ],
+    "cloned_at": "2026-07-02 15:52:33.143816+00:00"
+  },
+  "severity_summary": {
+    "critical": 0,
+    "high": 3,
+    "medium": 4,
+    "low": 4,
+    "info": 0,
+    "total": 11
+  },
+  "findings": [
+    {
+      "id": "ec113e9d-668f-44e1-a0a0-a6a6fabc597a",
+      "title": "subprocess_popen_with_shell_equals_true",
+      "description": "subprocess call with shell=True identified, security issue.",
+      "severity": "high",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-78",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 27,
+      "line_end": 27,
+      "code_snippet": "26     host = request.args.get(\"host\")\n27     output = subprocess.check_output(\"ping -c 1 \" + host, shell=True)\n28     return output\n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "26     host = request.args.get(\"host\")\n27     output = subprocess.check_output(\"ping -c 1 \" + host, shell=True)\n28     return output\n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "business_impact": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "recommendation": null,
+      "remediation": {
+        "finding_id": "ec113e9d-668f-44e1-a0a0-a6a6fabc597a",
+        "summary": "mock remediation",
+        "patch_diff": "",
+        "explanation": "mock remediation suggestion, no real model called",
+        "generated_by_model": "anthropic/claude-sonnet-4"
+      },
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302837+00:00"
+    },
+    {
+      "id": "340d7958-053d-42f4-99f2-9f837be16e86",
+      "title": "flask_debug_true",
+      "description": "A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.",
+      "severity": "high",
+      "confidence": "medium",
+      "category": "sast",
+      "cwe": "CWE-94",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 42,
+      "line_end": 42,
+      "code_snippet": "41 if __name__ == \"__main__\":\n42     app.run(debug=True, host=\"0.0.0.0\")\n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "41 if __name__ == \"__main__\":\n42     app.run(debug=True, host=\"0.0.0.0\")\n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "business_impact": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "recommendation": null,
+      "remediation": {
+        "finding_id": "340d7958-053d-42f4-99f2-9f837be16e86",
+        "summary": "mock remediation",
+        "patch_diff": "",
+        "explanation": "mock remediation suggestion, no real model called",
+        "generated_by_model": "anthropic/claude-sonnet-4"
+      },
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302850+00:00"
+    },
+    {
+      "id": "91dd1da6-bc00-4eb9-81ad-e192be062bb9",
+      "title": "hashlib",
+      "description": "Use of weak MD5 hash for security. Consider usedforsecurity=False",
+      "severity": "high",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-327",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py",
+      "line_start": 7,
+      "line_end": 7,
+      "code_snippet": "6 def hash_password(password: str) -> str:\n7     return hashlib.md5(password.encode()).hexdigest()\n8 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "6 def hash_password(password: str) -> str:\n7     return hashlib.md5(password.encode()).hexdigest()\n8 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "business_impact": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "recommendation": null,
+      "remediation": {
+        "finding_id": "91dd1da6-bc00-4eb9-81ad-e192be062bb9",
+        "summary": "mock remediation",
+        "patch_diff": "",
+        "explanation": "mock remediation suggestion, no real model called",
+        "generated_by_model": "anthropic/claude-sonnet-4"
+      },
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302869+00:00"
+    },
+    {
+      "id": "1cbce214-22f0-4e89-b84a-4bce617cb343",
+      "title": "hardcoded_sql_expressions",
+      "description": "Possible SQL injection vector through string-based query construction.",
+      "severity": "medium",
+      "confidence": "low",
+      "category": "sast",
+      "cwe": "CWE-89",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 19,
+      "line_end": 19,
+      "code_snippet": "18     cursor = conn.cursor()\n19     query = \"SELECT * FROM users WHERE id = \" + user_id\n20     cursor.execute(query)\n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "18     cursor = conn.cursor()\n19     query = \"SELECT * FROM users WHERE id = \" + user_id\n20     cursor.execute(query)\n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "business_impact": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302827+00:00"
+    },
+    {
+      "id": "f7586a53-e4f2-434b-a494-90b118d7bd5b",
+      "title": "blacklist",
+      "description": "Use of possibly insecure function - consider using safer ast.literal_eval.",
+      "severity": "medium",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-78",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 34,
+      "line_end": 34,
+      "code_snippet": "33     expr = request.args.get(\"expr\")\n34     return str(eval(expr))\n35 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "33     expr = request.args.get(\"expr\")\n34     return str(eval(expr))\n35 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "business_impact": "{\"summary\": \"mock analysis\", \"findings_reviewed\": 0}",
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302843+00:00"
+    },
+    {
+      "id": "c9d84fb9-9c72-4b6d-b5ec-ecccb0aefebd",
+      "title": "hardcoded_bind_all_interfaces",
+      "description": "Possible binding to all interfaces.",
+      "severity": "medium",
+      "confidence": "medium",
+      "category": "sast",
+      "cwe": "CWE-605",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 42,
+      "line_end": 42,
+      "code_snippet": "41 if __name__ == \"__main__\":\n42     app.run(debug=True, host=\"0.0.0.0\")\n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "41 if __name__ == \"__main__\":\n42     app.run(debug=True, host=\"0.0.0.0\")\n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302857+00:00"
+    },
+    {
+      "id": "aad06592-1d13-4b91-9a42-454ed17f897b",
+      "title": "blacklist",
+      "description": "Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.",
+      "severity": "medium",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-502",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py",
+      "line_start": 11,
+      "line_end": 11,
+      "code_snippet": "10 def deserialize(data: bytes):\n11     return pickle.loads(data)\n12 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "10 def deserialize(data: bytes):\n11     return pickle.loads(data)\n12 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302875+00:00"
+    },
+    {
+      "id": "d24c8d17-13f0-4d64-b59b-9ea22679cb27",
+      "title": "blacklist",
+      "description": "Consider possible security implications associated with the subprocess module.",
+      "severity": "low",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-78",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 4,
+      "line_end": 4,
+      "code_snippet": "3 import sqlite3\n4 import subprocess\n5 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "3 import sqlite3\n4 import subprocess\n5 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302806+00:00"
+    },
+    {
+      "id": "f78e4911-931b-4468-ac4b-aba8c32295c1",
+      "title": "hardcoded_password_string",
+      "description": "Possible hardcoded password: 'SuperSecretPassword123!'",
+      "severity": "low",
+      "confidence": "medium",
+      "category": "sast",
+      "cwe": "CWE-259",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/app.py",
+      "line_start": 11,
+      "line_end": 11,
+      "code_snippet": "10 AWS_ACCESS_KEY = \"[REDACTED]\"\n11 DB_PASSWORD = \"SuperSecretPassword123!\"\n12 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "10 AWS_ACCESS_KEY = \"[REDACTED]\"\n11 DB_PASSWORD = \"SuperSecretPassword123!\"\n12 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302817+00:00"
+    },
+    {
+      "id": "5d3ad956-92dc-49ce-8411-8e6ff819238c",
+      "title": "blacklist",
+      "description": "Consider possible security implications associated with pickle module.",
+      "severity": "low",
+      "confidence": "high",
+      "category": "sast",
+      "cwe": "CWE-502",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py",
+      "line_start": 3,
+      "line_end": 3,
+      "code_snippet": "2 import hashlib\n3 import pickle\n4 \n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "2 import hashlib\n3 import pickle\n4 \n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302861+00:00"
+    },
+    {
+      "id": "d65df353-6d88-476a-b451-e08cebcb76e8",
+      "title": "hardcoded_password_string",
+      "description": "Possible hardcoded password: 'ghp_1234567890abcdefghijklmnopqrstuvwxyz12'",
+      "severity": "low",
+      "confidence": "medium",
+      "category": "sast",
+      "cwe": "CWE-259",
+      "owasp": null,
+      "file_path": "tests/fixtures/sample_vulnerable_repo/utils/crypto_helper.py",
+      "line_start": 14,
+      "line_end": 14,
+      "code_snippet": "13 \n14 API_TOKEN = \"ghp_1234567890abcdefghijklmnopqrstuvwxyz12\"\n",
+      "evidence": [
+        {
+          "description": "Detected by bandit static analysis",
+          "snippet": "13 \n14 API_TOKEN = \"ghp_1234567890abcdefghijklmnopqrstuvwxyz12\"\n",
+          "source": "bandit"
+        }
+      ],
+      "attack_scenario": null,
+      "business_impact": null,
+      "recommendation": null,
+      "remediation": null,
+      "source_tool": "bandit",
+      "source_agent": "sast",
+      "validation_status": "unvalidated",
+      "false_positive_reason": null,
+      "created_at": "2026-07-02 15:52:33.302881+00:00"
+    }
+  ],
+  "tool_coverage": [
+    {
+      "tool_name": "semgrep",
+      "category": "sast",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "bandit",
+      "category": "sast",
+      "available": true,
+      "findings_count": 11
+    },
+    {
+      "tool_name": "gitleaks",
+      "category": "secrets",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "trufflehog",
+      "category": "secrets",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "pip_audit",
+      "category": "dependency",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "osv_scanner",
+      "category": "dependency",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "trivy",
+      "category": "dependency",
+      "available": false,
+      "findings_count": 0
+    },
+    {
+      "tool_name": "checkov",
+      "category": "iac",
+      "available": false,
+      "findings_count": 0
+    }
+  ],
+  "tools_unavailable": [
+    "semgrep",
+    "gitleaks",
+    "trufflehog",
+    "pip_audit",
+    "osv_scanner",
+    "trivy",
+    "checkov"
+  ],
+  "warnings": [
+    "sast: tool 'semgrep' not installed/available",
+    "secrets: tool 'gitleaks' not installed/available",
+    "secrets: tool 'trufflehog' not installed/available",
+    "dependency: tool 'pip_audit' not installed/available",
+    "dependency: tool 'osv_scanner' not installed/available",
+    "dependency: tool 'trivy' not installed/available",
+    "dependency: tool 'checkov' not installed/available"
+  ]
+}

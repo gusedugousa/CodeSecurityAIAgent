@@ -1,0 +1,153 @@
+# Security tool configuration consumed by app/tools/runner.py and adapters.
+# Tools that are not installed on the host are marked "unavailable" at runtime
+# and the analysis continues without them (see ToolRunner.check_available()).
+
+defaults:
+  timeout_seconds: 300
+
+tools:
+  git:
+    enabled: true
+    command: "git"
+    timeout_seconds: 120
+    output_parser: "git"
+    category: "scm"
+
+  semgrep:
+    enabled: true
+    command: "semgrep"
+    args: ["--json", "--quiet", "--config", "auto"]
+    timeout_seconds: 300
+    output_parser: "semgrep_json"
+    category: "sast"
+    severity_mapping:
+      ERROR: critical
+      WARNING: medium
+      INFO: low
+
+  bandit:
+    enabled: true
+    command: "bandit"
+    args: ["-r", "-f", "json"]
+    timeout_seconds: 180
+    output_parser: "bandit_json"
+    category: "sast"
+    severity_mapping:
+      HIGH: high
+      MEDIUM: medium
+      LOW: low
+
+  gitleaks:
+    enabled: true
+    command: "gitleaks"
+    args: ["detect", "--no-git", "--no-banner", "--report-format", "json"]
+    timeout_seconds: 180
+    output_parser: "gitleaks_json"
+    category: "secrets"
+    severity_mapping:
+      default: critical
+
+  trufflehog:
+    enabled: true
+    command: "trufflehog"
+    args: ["filesystem", "--json"]
+    timeout_seconds: 180
+    output_parser: "trufflehog_json"
+    category: "secrets"
+    severity_mapping:
+      default: high
+
+  pip_audit:
+    enabled: true
+    command: "pip-audit"
+    args: ["--format", "json"]
+    timeout_seconds: 180
+    output_parser: "pip_audit_json"
+    category: "dependency"
+    severity_mapping:
+      default: high
+
+  osv_scanner:
+    enabled: true
+    command: "osv-scanner"
+    # --recursive is required to descend into subdirectories (e.g. node_modules,
+    # monorepo package-lock.json files) - without it osv-scanner only scans the top level.
+    args: ["--format", "json", "--recursive"]
+    timeout_seconds: 180
+    output_parser: "osv_json"
+    category: "dependency"
+    severity_mapping:
+      default: medium
+
+  trivy:
+    enabled: true
+    command: "trivy"
+    args: ["fs", "--format", "json", "--quiet"]
+    timeout_seconds: 300
+    output_parser: "trivy_json"
+    category: "dependency"
+    severity_mapping:
+      CRITICAL: critical
+      HIGH: high
+      MEDIUM: medium
+      LOW: low
+      UNKNOWN: info
+
+  checkov:
+    enabled: true
+    command: "checkov"
+    args: ["-d", "--output", "json", "--compact"]
+    timeout_seconds: 300
+    output_parser: "checkov_json"
+    category: "iac"
+    severity_mapping:
+      CRITICAL: critical
+      HIGH: high
+      MEDIUM: medium
+      LOW: low
+
+  docker:
+    enabled: false   # placeholder wrapper; not invoked by MVP agents by default
+    command: "docker"
+    timeout_seconds: 120
+    output_parser: "raw"
+    category: "container"
+
+  meziantou:
+    enabled: true
+    command: "dotnet"
+    # build_command is fully custom (temp copy + restore + build); args unused but
+    # kept for shape consistency with other tools.
+    args: []
+    timeout_seconds: 600   # dotnet restore+build is slow relative to other SAST tools
+    output_parser: "meziantou_sarif"
+    category: "sast"
+    meziantou_version: "2.0.*"
+    severity_mapping:
+      error: high
+      warning: medium
+      note: low
+
+  poutine:
+    enabled: true
+    command: "poutine"
+    args: ["analyze_local", "--format", "sarif"]
+    timeout_seconds: 180
+    output_parser: "poutine_sarif"
+    category: "cicd"
+    severity_mapping:
+      error: critical
+      warning: high
+      note: medium
+
+  semgrep_databricks:
+    enabled: true
+    command: "semgrep"
+    args: ["--json", "--quiet", "--config", "configs/semgrep-rules/databricks.yaml"]
+    timeout_seconds: 120
+    output_parser: "semgrep_json"
+    category: "iac"
+    severity_mapping:
+      ERROR: critical
+      WARNING: high
+      INFO: medium

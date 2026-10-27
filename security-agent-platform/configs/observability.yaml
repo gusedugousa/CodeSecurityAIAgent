@@ -1,0 +1,28 @@
+# OpenTelemetry configuration consumed by app/core/telemetry.py
+service_name: "security-agent-platform"
+service_version: "0.1.0"
+
+otel_endpoint: "http://localhost:4317"
+otel_protocol: "grpc"   # grpc | http
+
+traces_enabled: true
+metrics_enabled: true
+logs_enabled: true
+
+# Console exporting is useful when no collector is running (e.g. bare `make run`).
+console_fallback_enabled: true
+
+metrics_export_interval_ms: 5000
+
+# Cloud exporters are NOT wired into the MVP. This section documents intent
+# for the final architecture (see docs/observability.md).
+future_cloud_exporters:
+  azure_monitor:
+    enabled: false
+    connection_string_env: "APPLICATIONINSIGHTS_CONNECTION_STRING"
+  aws_cloudwatch:
+    enabled: false
+    region_env: "AWS_REGION"
+  datadog:
+    enabled: false
+    api_key_env: "DD_API_KEY"

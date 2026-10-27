@@ -1,0 +1,92 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="MVP Architecture" id="mvp-arch">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Security Agent Platform — MVP Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="700" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="client" value="Client&#10;(API / CLI request)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api" value="FastAPI Gateway&#10;(authn/authz/rate-limit placeholders)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="230" y="70" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="coordinator" value="Coordinator Agent&#10;(creates AnalysisState, analysis_id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="500" y="70" width="240" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="graphbox" value="LangGraph Orchestration (sole workflow engine)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="1000" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="n1" value="repo_ingestion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="sast" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="225" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="secrets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="390" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="dependency" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="555" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="remediation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="720" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="885" y="190" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_fatal" value="fatal ingestion error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=1;" edge="1" parent="1" source="n1" target="n6">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="130" y="270" /><mxPoint x="955" y="270" /></Array></mxGeometry>
+        </mxCell>
+
+        <mxCell id="tools" value="Security Tools (ToolRunner abstraction — unavailable tools degrade to warnings)&#10;Semgrep · Bandit · Gitleaks · TruffleHog · pip-audit · OSV-Scanner · Trivy · Checkov · Git" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="500" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="litellm" value="LiteLLM Model Gateway&#10;role-based routing: coordinator / analysis / remediation / reporting / cheap_classifier&#10;OpenAI · Anthropic · Gemini · Azure OpenAI · Ollama · Mock mode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="560" y="340" width="480" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="langchain" value="LangChain utility layer (NOT the orchestrator)&#10;PromptTemplate · structured output parsing · text splitters · retriever placeholder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="150" width="300" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mcp" value="MCP-ready layer (placeholders)&#10;GitHub · Azure DevOps · Jira · SonarQube · Vuln DB · Vault" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="240" width="300" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="otel" value="OpenTelemetry Observability&#10;traces (per node/tool/LLM call) · metrics · structured JSON logs&#10;correlated by analysis_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="1000" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="persistence" value="Persistence&#10;SQLite (dev) / PostgreSQL-ready · Redis-ready cache/queue placeholder&#10;Object store placeholder · Vector store placeholder (future RAG)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="500" width="500" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="outputs" value="Outputs&#10;JSON findings · Markdown report · SARIF-like report · Remediation suggestions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="560" y="500" width="480" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ec1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="client" target="api"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="api" target="coordinator"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="coordinator" target="n1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="graphbox" target="tools"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="graphbox" target="litellm"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="n6" target="outputs"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="graphbox" target="persistence"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

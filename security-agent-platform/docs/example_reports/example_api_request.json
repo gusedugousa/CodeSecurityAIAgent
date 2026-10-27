@@ -1,0 +1,6 @@
+{
+  "local_path": "tests/fixtures/sample_vulnerable_repo",
+  "analysis_profile": "mvp-default",
+  "model_profile": "default",
+  "enable_remediation": true
+}

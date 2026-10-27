@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  # The app pushes metrics via OTLP to the collector (app/core/telemetry.py); it does not
+  # expose its own /metrics endpoint. The collector re-exposes them here in Prometheus format.
+  - job_name: "otel-collector"
+    static_configs:
+      - targets: ["otel-collector:8889"]

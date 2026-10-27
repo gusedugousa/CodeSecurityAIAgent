@@ -1,0 +1,87 @@
+# Model routing configuration for LiteLLM-backed model client.
+# API keys are NEVER stored here — they are resolved from environment variables
+# by LiteLLM / app/core/config.py at call time.
+#
+# mock_mode: true forces app/models/litellm_client.py to use a deterministic
+# canned-response client instead of calling any real provider. This lets the
+# platform run end-to-end with zero API keys configured.
+
+default_profile: "default"
+mock_mode: true   # overridden by MODEL_MOCK_MODE env var if set
+
+request_defaults:
+  timeout_seconds: 60
+  retry_count: 2
+  retry_backoff_seconds: 2
+
+profiles:
+  default:
+    description: "Balanced profile using Claude Sonnet for heavy lifting, a cheap model for classification."
+    roles:
+      coordinator_model: "anthropic/claude-sonnet-4"
+      analysis_model: "anthropic/claude-sonnet-4"
+      remediation_model: "anthropic/claude-sonnet-4"
+      reporting_model: "anthropic/claude-sonnet-4"
+      cheap_classifier_model: "anthropic/claude-haiku-4-5"
+
+  openai:
+    description: "OpenAI-only profile."
+    roles:
+      coordinator_model: "openai/gpt-4.1"
+      analysis_model: "openai/gpt-4.1"
+      remediation_model: "openai/gpt-4.1"
+      reporting_model: "openai/gpt-4.1-mini"
+      cheap_classifier_model: "openai/gpt-4.1-mini"
+
+  gemini:
+    description: "Google Gemini profile."
+    roles:
+      coordinator_model: "gemini/gemini-2.5-pro"
+      analysis_model: "gemini/gemini-2.5-pro"
+      remediation_model: "gemini/gemini-2.5-pro"
+      reporting_model: "gemini/gemini-2.5-flash"
+      cheap_classifier_model: "gemini/gemini-2.5-flash"
+
+  azure:
+    description: "Azure OpenAI profile. Requires AZURE_OPENAI_* env vars."
+    roles:
+      coordinator_model: "azure/gpt-4.1"
+      analysis_model: "azure/gpt-4.1"
+      remediation_model: "azure/gpt-4.1"
+      reporting_model: "azure/gpt-4.1"
+      cheap_classifier_model: "azure/gpt-4.1"
+
+  local-ollama:
+    description: "Fully local profile using Ollama. No API key required."
+    roles:
+      coordinator_model: "ollama/qwen2.5-coder"
+      analysis_model: "ollama/qwen2.5-coder"
+      remediation_model: "ollama/qwen2.5-coder"
+      reporting_model: "ollama/qwen2.5-coder"
+      cheap_classifier_model: "ollama/qwen2.5-coder"
+
+  mock:
+    description: "Deterministic offline profile for tests and CI. No network calls."
+    roles:
+      coordinator_model: "mock/mock-coordinator"
+      analysis_model: "mock/mock-analysis"
+      remediation_model: "mock/mock-remediation"
+      reporting_model: "mock/mock-reporting"
+      cheap_classifier_model: "mock/mock-classifier"
+
+# Approximate USD cost per 1K tokens, used only for cost_estimate telemetry.
+# Not a source of truth for billing.
+cost_table_per_1k_tokens:
+  "openai/gpt-4.1": { input: 0.002, output: 0.008 }
+  "openai/gpt-4.1-mini": { input: 0.0004, output: 0.0016 }
+  "anthropic/claude-sonnet-4": { input: 0.003, output: 0.015 }
+  "anthropic/claude-haiku-4-5": { input: 0.0008, output: 0.004 }
+  "gemini/gemini-2.5-pro": { input: 0.00125, output: 0.005 }
+  "gemini/gemini-2.5-flash": { input: 0.000075, output: 0.0003 }
+  "azure/gpt-4.1": { input: 0.002, output: 0.008 }
+  "ollama/qwen2.5-coder": { input: 0.0, output: 0.0 }
+  "mock/mock-coordinator": { input: 0.0, output: 0.0 }
+  "mock/mock-analysis": { input: 0.0, output: 0.0 }
+  "mock/mock-remediation": { input: 0.0, output: 0.0 }
+  "mock/mock-reporting": { input: 0.0, output: 0.0 }
+  "mock/mock-classifier": { input: 0.0, output: 0.0 }

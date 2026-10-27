@@ -1,0 +1,60 @@
+# Custom Semgrep ruleset for Databricks Asset Bundle config (databricks.yml).
+# No mature, dedicated security scanner exists for this format (checkov's Databricks
+# coverage only applies to Terraform/ARM-managed resources, not the native bundle
+# format) - these generic pattern-match rules are a pragmatic stand-in, run as a
+# second Semgrep invocation via app.tools.semgrep.SemgrepDatabricksAdapter.
+rules:
+  - id: databricks-hardcoded-secret-in-bundle-var
+    languages: [generic]
+    severity: ERROR
+    message: >-
+      Hardcoded secret-looking value in a Databricks bundle variable default.
+      Use a secret scope or environment-injected value instead of a literal default.
+    metadata:
+      category: iac
+      references:
+        - https://docs.databricks.com/en/dev-tools/bundles/settings.html
+    patterns:
+      - pattern-regex: '(?i)(token|password|secret|api[_-]?key)\s*:\s*\n?\s*default\s*:\s*"[A-Za-z0-9_\-]{16,}"'
+    paths:
+      include: ["databricks.yml", "databricks.yaml"]
+
+  - id: databricks-cluster-single-user-name-too-broad
+    languages: [generic]
+    severity: ERROR
+    message: >-
+      Cluster single_user_name is set to a wildcard, granting overly broad
+      single-user access to the cluster.
+    metadata:
+      category: iac
+    patterns:
+      - pattern-regex: 'single_user_name\s*:\s*"?\*"?'
+    paths:
+      include: ["databricks.yml", "databricks.yaml"]
+
+  - id: databricks-init-script-non-https
+    languages: [generic]
+    severity: ERROR
+    message: >-
+      Cluster init script is fetched over a non-HTTPS URL, allowing tampering
+      of the script in transit before it runs on the cluster.
+    metadata:
+      category: iac
+    patterns:
+      - pattern-regex: 'source\s*:\s*"http://[^"]+"'
+    paths:
+      include: ["databricks.yml", "databricks.yaml"]
+
+  - id: databricks-permissions-can-manage-too-broad
+    languages: [generic]
+    severity: WARNING
+    message: >-
+      A permissions block grants CAN_MANAGE, the most privileged Databricks
+      permission level - verify this is scoped to a specific, trusted principal
+      rather than a broad group.
+    metadata:
+      category: iac
+    patterns:
+      - pattern-regex: 'level\s*:\s*CAN_MANAGE'
+    paths:
+      include: ["databricks.yml", "databricks.yaml"]
