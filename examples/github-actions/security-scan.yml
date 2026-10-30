@@ -1,0 +1,50 @@
+# Example: run the platform as a CI security gate on every pull request.
+# Copy to .github/workflows/ in the repository you want to scan.
+name: AI security scan
+
+on:
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write   # required to upload SARIF to code scanning
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: target
+
+      - uses: actions/checkout@v4
+        with:
+          repository: OWNER/REPO_OF_THIS_PLATFORM   # replace once the repo name is final
+          path: platform
+
+      - name: Start the platform (mock model mode unless a key is provided)
+        working-directory: platform
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          cp .env.example .env
+          if [ -n "$ANTHROPIC_API_KEY" ]; then
+            sed -i 's/^MODEL_MOCK_MODE=.*/MODEL_MOCK_MODE=false/' .env
+            echo "ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY" >> .env
+          fi
+          SCAN_TARGETS_DIR="$GITHUB_WORKSPACE" docker compose up --build -d app postgres redis
+          for i in $(seq 1 30); do curl -sf http://localhost:8001/health && break || sleep 5; done
+
+      - name: Scan and gate
+        run: |
+          pip install httpx
+          python platform/scripts/ci_scan.py \
+            --url http://localhost:8001 \
+            --local-path /scan-targets/target \
+            --fail-on high \
+            --sarif-out results.sarif
+
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif

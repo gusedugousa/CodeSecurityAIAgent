@@ -1,1 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+data/
+.env
+
+# Local
+.DS_Store
 /.claude
+scan-targets/
