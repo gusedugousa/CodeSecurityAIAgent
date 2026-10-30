@@ -1,5 +1,5 @@
 # OpenTelemetry configuration consumed by app/core/telemetry.py
-service_name: "security-agent-platform"
+service_name: "governed-ai-code-security"
 service_version: "0.1.0"
 
 otel_endpoint: "http://localhost:4317"

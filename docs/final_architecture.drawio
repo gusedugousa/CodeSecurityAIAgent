@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
-        <mxCell id="title" value="Security Agent Platform — Final Target Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
+        <mxCell id="title" value="Broader solution architecture (not published in this repository)" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="40" y="10" width="800" height="30" as="geometry" />
         </mxCell>
 
@@ -65,7 +65,7 @@
           <mxGeometry x="40" y="660" width="1520" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="mvpnote" value="Bold-bordered boxes = implemented in the MVP (possibly as a subset). Other boxes = documented and interface-scaffolded, not fully implemented." style="text;html=1;fontSize=12;fontStyle=2;align=left;" vertex="1" parent="1">
+        <mxCell id="mvpnote" value="This prototype was extracted from a larger solution that covers much of this design. Bold-bordered boxes = present in this repository (possibly as a subset). Other boxes = outside this repository or scaffolded only." style="text;html=1;fontSize=12;fontStyle=2;align=left;" vertex="1" parent="1">
           <mxGeometry x="40" y="740" width="900" height="30" as="geometry" />
         </mxCell>
 

@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Security Agent Platform",
+    title="Governed AI Code Security",
     description="AI Agentic Code Security Analysis Platform (MVP)",
     version="0.1.0",
     lifespan=lifespan,

@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1230" width="1600" height="1230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Governed AI Code Security architecture</title>
+<desc id="d">Top: the proof of concept published in this repository. Bottom: the broader solution architecture it was extracted from, which is not published here.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#52606d"/></marker></defs>
+<rect width="1600" height="1230" fill="#ffffff"/>
+<rect x="10" y="10" width="1580" height="560" rx="12" fill="#ffffff" stroke="#9aa5b1" stroke-width="1.6"/>
+<text x="34" y="46" font-size="22" font-weight="800" fill="#1f2933" text-anchor="start">Architecture: proof of concept published in this repository</text>
+<text x="34" y="68" font-size="13" font-weight="400" fill="#52606d" text-anchor="start">Implemented and tested. Run it with make docker-up or make run; models run in mock mode by default.</text>
+<rect x="30" y="90" width="220" height="220" rx="8" fill="#e8f0fe" stroke="#4a7bd0" stroke-width="1.6"/>
+<text x="140.0" y="112" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Inputs</text>
+<text x="140.0" y="137" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Git repository URL</text>
+<text x="140.0" y="154" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Local path</text>
+<text x="140.0" y="171" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">CI/CD client</text>
+<text x="140.0" y="188" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">(scripts/ci_scan.py)</text>
+<text x="140.0" y="205" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">REST API / curl</text>
+<rect x="280" y="160" width="170" height="80" rx="8" fill="#e3f6f2" stroke="#2e9c8a" stroke-width="1.6"/>
+<text x="365.0" y="182" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">FastAPI gateway</text>
+<text x="365.0" y="207" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">POST /api/v1/analysis</text>
+<text x="365.0" y="224" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">status · findings · reports</text>
+<line x1="250" y1="200" x2="280" y2="200" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="480" y="80" width="790" height="250" rx="8" fill="#f1eafb" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="875" y="104" font-size="15" font-weight="700" fill="#1f2933" text-anchor="middle">LangGraph orchestration</text>
+<rect x="755" y="118" width="240" height="50" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="875.0" y="140" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Coordinator agent</text>
+<text x="875.0" y="164" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">builds state · runs the graph</text>
+<line x1="450" y1="200" x2="480" y2="200" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="492" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="540.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">repo_ingestion</text>
+<text x="540.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">clone /</text>
+<text x="540.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">validate repo</text>
+<line x1="540.0" y1="168" x2="540.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="602" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="650.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">sast</text>
+<text x="650.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Semgrep</text>
+<text x="650.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Bandit</text>
+<text x="650.0" y="283" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Meziantou</text>
+<line x1="588" y1="255.0" x2="602" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="650.0" y1="168" x2="650.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="712" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="760.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">secrets</text>
+<text x="760.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Gitleaks</text>
+<text x="760.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">TruffleHog</text>
+<text x="760.0" y="283" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">+ LLM triage</text>
+<line x1="698" y1="255.0" x2="712" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="760.0" y1="168" x2="760.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="822" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="870.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">dependency</text>
+<text x="870.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">pip-audit</text>
+<text x="870.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">OSV · Trivy</text>
+<text x="870.0" y="283" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Checkov</text>
+<line x1="808" y1="255.0" x2="822" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="870.0" y1="168" x2="870.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="932" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="980.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">cicd</text>
+<text x="980.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Poutine</text>
+<text x="980.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">workflow</text>
+<text x="980.0" y="283" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">weaknesses</text>
+<line x1="918" y1="255.0" x2="932" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="980.0" y1="168" x2="980.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="1042" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="1090.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">remediation</text>
+<text x="1090.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">LLM patch</text>
+<text x="1090.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">suggestions</text>
+<line x1="1028" y1="255.0" x2="1042" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="1090.0" y1="168" x2="1090.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="1152" y="205" width="96" height="100" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6"/>
+<text x="1200.0" y="227" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">report</text>
+<text x="1200.0" y="251" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">exec summary</text>
+<text x="1200.0" y="267" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">+ report files</text>
+<line x1="1138" y1="255.0" x2="1152" y2="255.0" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="1200.0" y1="168" x2="1200.0" y2="205" stroke="#b39ddb" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="875" y="322" font-size="11" font-weight="400" fill="#52606d" text-anchor="middle" font-style="italic">A fatal ingestion error short-circuits straight to the report node</text>
+<rect x="1300" y="80" width="270" height="250" rx="8" fill="#fff6dc" stroke="#d9a521" stroke-width="1.6"/>
+<text x="1435.0" y="102" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Outputs</text>
+<text x="1435.0" y="127" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">JSON findings</text>
+<text x="1435.0" y="144" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Markdown report</text>
+<text x="1435.0" y="161" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">CSV / deduplicated CSV</text>
+<text x="1435.0" y="178" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">SARIF (code scanning)</text>
+<text x="1435.0" y="195" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">CI gate exit code</text>
+<line x1="1270" y1="200" x2="1300" y2="200" stroke="#52606d" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="30" y="350" width="420" height="130" rx="8" fill="#e3f6f2" stroke="#2e9c8a" stroke-width="1.6"/>
+<text x="240.0" y="372" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">LiteLLM model gateway</text>
+<text x="240.0" y="397" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">role-based routing across 5 roles</text>
+<text x="240.0" y="414" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Anthropic · OpenAI · Gemini · Azure · Ollama</text>
+<text x="240.0" y="431" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Mock mode (default, no API key)</text>
+<text x="240.0" y="448" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">secret redaction before every call</text>
+<rect x="480" y="350" width="790" height="60" rx="8" fill="#e8f0fe" stroke="#4a7bd0" stroke-width="1.6"/>
+<text x="875.0" y="372" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Specialized scanners (ToolRunner)</text>
+<text x="875.0" y="396" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Semgrep · Bandit · Meziantou · Gitleaks · TruffleHog · pip-audit · OSV-Scanner · Trivy · Checkov · Poutine · Git</text>
+<rect x="480" y="420" width="385" height="60" rx="8" fill="#e9f6e5" stroke="#5aa24a" stroke-width="1.6"/>
+<text x="672.5" y="442" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Persistence</text>
+<text x="672.5" y="466" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">SQLite / PostgreSQL · local object store</text>
+<rect x="885" y="420" width="385" height="60" rx="8" fill="#f3f4f6" stroke="#8a8f98" stroke-width="1.6"/>
+<text x="1077.5" y="442" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Observability</text>
+<text x="1077.5" y="466" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">OpenTelemetry traces · metrics · JSON logs</text>
+<rect x="1300" y="350" width="270" height="130" rx="8" fill="#f3f4f6" stroke="#8a8f98" stroke-width="1.6"/>
+<text x="1435.0" y="372" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Docker Compose stack</text>
+<text x="1435.0" y="397" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Postgres · Redis · OTel Collector</text>
+<text x="1435.0" y="414" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Prometheus · Grafana</text>
+<text x="1435.0" y="431" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Loki · Tempo</text>
+<line x1="875" y1="330" x2="875" y2="350" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<line x1="450" y1="410" x2="480" y2="410" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<rect x="30" y="500" width="1540" height="56" rx="8" fill="#f3f4f6" stroke="#8a8f98" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="800" y="534" font-size="12" font-weight="400" fill="#52606d" text-anchor="middle" font-style="italic">Scaffolded only in this repository: MCP adapters · future agents (code understanding, IaC, threat modeling, validation) · vector store · authN/authZ · job queue · cloud deployment</text>
+<rect x="10" y="590" width="1580" height="630" rx="12" fill="#ffffff" stroke="#9aa5b1" stroke-width="1.6" stroke-dasharray="10 6"/>
+<text x="34" y="626" font-size="22" font-weight="800" fill="#1f2933" text-anchor="start">Broader solution architecture (not published in this repository)</text>
+<text x="34" y="648" font-size="13" font-weight="400" fill="#52606d" text-anchor="start">This prototype was extracted from a larger solution that already covers much of this design. Only a partial demonstration is published here.</text>
+<rect x="30" y="670" width="220" height="170" rx="8" fill="#e8f0fe" stroke="#4a7bd0" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="140.0" y="692" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Inputs</text>
+<text x="140.0" y="717" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Git providers (GitHub, GitLab,</text>
+<text x="140.0" y="734" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Bitbucket, Azure DevOps)</text>
+<text x="140.0" y="751" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Pull / merge requests</text>
+<text x="140.0" y="768" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Web UI · API · CLI · CI/CD</text>
+<rect x="280" y="670" width="180" height="170" rx="8" fill="#e3f6f2" stroke="#2e9c8a" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="370.0" y="692" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">API gateway</text>
+<text x="370.0" y="717" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">AuthN / AuthZ</text>
+<text x="370.0" y="734" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">OAuth / SSO</text>
+<text x="370.0" y="751" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">multi-tenant</text>
+<text x="370.0" y="768" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">rate limiting</text>
+<rect x="490" y="670" width="200" height="80" rx="8" fill="#fff6dc" stroke="#d9a521" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="590.0" y="692" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Job manager</text>
+<text x="590.0" y="717" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">creates and tracks</text>
+<text x="590.0" y="734" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">analysis jobs</text>
+<rect x="490" y="760" width="200" height="80" rx="8" fill="#fff6dc" stroke="#d9a521" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="590.0" y="782" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Message queue</text>
+<text x="590.0" y="807" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Redis · RabbitMQ</text>
+<text x="590.0" y="824" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Service Bus · SQS</text>
+<line x1="250" y1="755" x2="280" y2="755" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<line x1="460" y1="710" x2="490" y2="710" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<rect x="720" y="660" width="600" height="300" rx="8" fill="#f1eafb" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1020" y="684" font-size="15" font-weight="700" fill="#1f2933" text-anchor="middle">LangGraph orchestration: full agent set</text>
+<rect x="895" y="696" width="250" height="40" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1020.0" y="718" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Coordinator agent</text>
+<rect x="728" y="756" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="783.0" y="792.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Repo Ingestion</text>
+<rect x="846" y="756" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="901.0" y="784.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Code</text>
+<text x="901.0" y="800.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Understanding</text>
+<rect x="964" y="756" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1019.0" y="792.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">SAST</text>
+<rect x="1082" y="756" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1137.0" y="792.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Secrets</text>
+<rect x="1200" y="756" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1255.0" y="784.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Dependency /</text>
+<text x="1255.0" y="800.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">SCA</text>
+<rect x="728" y="840" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="783.0" y="868.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">IaC /</text>
+<text x="783.0" y="884.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Cloud Security</text>
+<rect x="846" y="840" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="901.0" y="868.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Threat</text>
+<text x="901.0" y="884.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Modeling</text>
+<rect x="964" y="840" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1019.0" y="868.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Validation /</text>
+<text x="1019.0" y="884.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Exploitability</text>
+<rect x="1082" y="840" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1137.0" y="876.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Remediation</text>
+<rect x="1200" y="840" width="110" height="64" rx="8" fill="#ffffff" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1255.0" y="876.0" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Report</text>
+<line x1="690" y1="750" x2="720" y2="750" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<rect x="1350" y="660" width="220" height="300" rx="8" fill="#fff6dc" stroke="#d9a521" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1460.0" y="682" font-size="14" font-weight="700" fill="#1f2933" text-anchor="middle">Outputs</text>
+<text x="1460.0" y="707" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">JSON findings (API)</text>
+<text x="1460.0" y="724" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Markdown · SARIF</text>
+<text x="1460.0" y="741" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Dashboard (Web UI)</text>
+<text x="1460.0" y="758" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Tickets (Jira, Azure</text>
+<text x="1460.0" y="775" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">DevOps)</text>
+<text x="1460.0" y="792" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Remediation patches</text>
+<text x="1460.0" y="809" font-size="12" font-weight="400" fill="#3e4c59" text-anchor="middle">Pull request creation</text>
+<line x1="1320" y1="810" x2="1350" y2="810" stroke="#52606d" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<rect x="30" y="880" width="660" height="80" rx="8" fill="#e8f0fe" stroke="#4a7bd0" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="360.0" y="902" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Tools and MCP integrations</text>
+<text x="360.0" y="926" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">Semgrep · Bandit · Gitleaks · TruffleHog · pip-audit · OSV · Grype · Trivy · Checkov · Docker · cloud scanners</text>
+<text x="360.0" y="942" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">MCP: GitHub · Azure DevOps · Jira · SonarQube · Confluence · Slack · Vault · vulnerability DB</text>
+<rect x="30" y="990" width="480" height="100" rx="8" fill="#e3f6f2" stroke="#2e9c8a" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="270.0" y="1012" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Model management</text>
+<text x="270.0" y="1036" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">LiteLLM gateway · OpenAI · Azure OpenAI · Anthropic · Gemini · Ollama</text>
+<text x="270.0" y="1052" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">cost routing · token budgets · fallbacks · model evaluation</text>
+<rect x="530" y="990" width="480" height="100" rx="8" fill="#f1eafb" stroke="#7e57c2" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="770.0" y="1012" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">RAG / knowledge layer</text>
+<text x="770.0" y="1036" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">security docs · coding standards · historical findings</text>
+<text x="770.0" y="1052" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">CWE / OWASP / CVE · org policies · vector DB (pgvector, Qdrant)</text>
+<rect x="1030" y="990" width="540" height="100" rx="8" fill="#e9f6e5" stroke="#5aa24a" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="1300.0" y="1012" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Data and persistence</text>
+<text x="1300.0" y="1036" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">PostgreSQL · Redis · object storage</text>
+<text x="1300.0" y="1052" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">evidence · reports · artifacts · logs</text>
+<rect x="30" y="1110" width="1540" height="90" rx="8" fill="#f3f4f6" stroke="#8a8f98" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="800.0" y="1132" font-size="13" font-weight="700" fill="#1f2933" text-anchor="middle">Observability and operations</text>
+<text x="800.0" y="1156" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">OpenTelemetry SDK + Collector · Prometheus · Grafana · Loki / OpenSearch · Tempo / Jaeger</text>
+<text x="800.0" y="1172" font-size="11" font-weight="400" fill="#3e4c59" text-anchor="middle">optional: LangSmith · MLflow / Phoenix · Azure Monitor · CloudWatch / X-Ray · Datadog · New Relic</text>
+</svg>

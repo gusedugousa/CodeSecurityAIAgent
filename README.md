@@ -12,7 +12,24 @@ come out as JSON, Markdown, CSV and SARIF, ready for CI gates and GitHub code sc
 It runs fully offline with no API keys using a deterministic **mock model mode**, so you can
 try the whole pipeline in minutes.
 
-![Architecture: MVP vs target](docs/architecture-mvp-vs-tobe.png)
+![Architecture: this repository and the broader solution](docs/architecture.svg)
+
+## Origin and scope
+
+This repository is a **partial demonstration extracted from a broader solution**. That larger
+solution already covers much of the target architecture shown in the lower half of the diagram
+above (full agent set, job queue, authentication and multi-tenancy, MCP integrations, RAG
+knowledge layer, production data and observability stack). For intellectual-property reasons only
+a subset is published here: the scanner orchestration, the LLM integration pattern, the CI client
+and the observability stack that make up this proof of concept.
+
+Consequently, items listed under [scaffolded only](#what-is-real-and-what-is-not) are interfaces
+and placeholders in this repository, not a statement that the capability does not exist
+elsewhere. Contributions are welcome within the scope of what is published here; see
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+Published as a community contribution with the authorization of KYY Technologies Inc.
+See [NOTICE](NOTICE).
 
 ## Why
 

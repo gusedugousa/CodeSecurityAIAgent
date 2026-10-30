@@ -1,8 +1,13 @@
 # Architecture
 
-## MVP architecture
+![Architecture diagram](architecture.svg)
 
-The MVP is a single FastAPI service that accepts an analysis request, runs a LangGraph state
+The diagram shows this repository (top) and the broader solution it was extracted from
+(bottom, not published here). See the [README](../README.md#origin-and-scope).
+
+## Proof-of-concept architecture
+
+This proof of concept is a single FastAPI service that accepts an analysis request, runs a LangGraph state
 machine over a target repository, and persists findings/reports. It is designed to run
 identically on a laptop (`docker-compose up`) or as a single container in any orchestrator.
 
@@ -17,7 +22,7 @@ Coordinator Agent  --creates AnalysisState, analysis_id-->
       |
       v
 LangGraph state machine (app/orchestration/graph.py)
-  START -> repo_ingestion -> sast -> secrets -> dependency -> remediation -> report -> END
+  START -> repo_ingestion -> sast -> secrets -> dependency -> cicd -> remediation -> report -> END
       |                          |         |          |            |            |
       v                          v         v          v            v            v
   GitRepositoryIngestor   Semgrep/Bandit  Gitleaks/  pip-audit/   LiteLLM      severity
@@ -29,7 +34,7 @@ LangGraph state machine (app/orchestration/graph.py)
 Persistence (SQLAlchemy async: SQLite locally, Postgres in compose)
       |
       v
-Report generation (app/reports/*.py): JSON, Markdown, SARIF-like, written to disk
+Report generation (app/reports/*.py): JSON, Markdown, CSV, SARIF-like, written to disk
       |
       v
 GET /api/v1/analysis/{id}/{status,findings,reports/*}
@@ -94,10 +99,12 @@ findings_count). Metrics (`app/observability/metrics.py`) and structured JSON lo
 (`app/core/logging.py` + `app/observability/events.py`) are correlated by the same `analysis_id`.
 See `docs/observability.md` for the full trace/metric/log design and local Grafana setup.
 
-## Final architecture (documented, partially scaffolded)
+## Broader solution (outside this repository, partially scaffolded here)
 
-The final architecture (see the project's top-level spec, section 3) extends the MVP along
-several axes without requiring a rewrite of what exists:
+This prototype was extracted from a larger solution that already covers much of the target
+architecture; for ownership reasons only a partial demonstration is published here. The axes
+below describe how the broader design extends this proof of concept, and where this repository
+has interface-level scaffolding for them:
 
 - **More inputs**: GitHub/GitLab/Bitbucket/Azure DevOps webhooks, CI/CD pipeline triggers, a web
   UI — all funnel into the same `POST /api/v1/analysis` contract the MVP already exposes.

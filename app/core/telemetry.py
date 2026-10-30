@@ -32,7 +32,7 @@ def configure_telemetry(settings: Any) -> None:
         return
 
     observability = settings.observability
-    service_name: str = observability.get("service_name", "security-agent-platform")
+    service_name: str = observability.get("service_name", "governed-ai-code-security")
     service_version: str = observability.get("service_version", "0.0.0")
     environment: str = getattr(settings, "environment", "local")
 

@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
-        <mxCell id="title" value="Security Agent Platform — MVP Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
+        <mxCell id="title" value="Governed AI Code Security — Proof-of-Concept Architecture (published in this repository)" style="text;html=1;fontSize=22;fontStyle=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="40" y="10" width="700" height="30" as="geometry" />
         </mxCell>
 
@@ -24,34 +24,39 @@
         <mxCell id="graphbox" value="LangGraph Orchestration (sole workflow engine)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="40" y="150" width="1000" height="160" as="geometry" />
         </mxCell>
+        
         <mxCell id="n1" value="repo_ingestion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="60" y="190" width="140" height="50" as="geometry" />
+          <mxGeometry x="60" y="190" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="n2" value="sast" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="225" y="190" width="140" height="50" as="geometry" />
+          <mxGeometry x="195" y="190" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="n3" value="secrets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="390" y="190" width="140" height="50" as="geometry" />
+          <mxGeometry x="330" y="190" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="n4" value="dependency" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="555" y="190" width="140" height="50" as="geometry" />
+          <mxGeometry x="465" y="190" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="n5" value="remediation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="720" y="190" width="140" height="50" as="geometry" />
+        <mxCell id="n5" value="cicd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="190" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="n6" value="report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="885" y="190" width="140" height="50" as="geometry" />
+        <mxCell id="n6" value="remediation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="735" y="190" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="870" y="190" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="n6" target="n7"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e_fatal" value="fatal ingestion error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=1;" edge="1" parent="1" source="n1" target="n6">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="130" y="270" /><mxPoint x="955" y="270" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="120" y="270" /><mxPoint x="915" y="270" /></Array></mxGeometry>
         </mxCell>
 
-        <mxCell id="tools" value="Security Tools (ToolRunner abstraction — unavailable tools degrade to warnings)&#10;Semgrep · Bandit · Gitleaks · TruffleHog · pip-audit · OSV-Scanner · Trivy · Checkov · Git" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="tools" value="Security Tools (ToolRunner abstraction — unavailable tools degrade to warnings)&#10;Semgrep · Bandit · Meziantou · Gitleaks · TruffleHog · pip-audit · OSV-Scanner · Trivy · Checkov · Poutine · Git" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="40" y="340" width="500" height="60" as="geometry" />
         </mxCell>
 
@@ -75,7 +80,7 @@
           <mxGeometry x="40" y="500" width="500" height="70" as="geometry" />
         </mxCell>
 
-        <mxCell id="outputs" value="Outputs&#10;JSON findings · Markdown report · SARIF-like report · Remediation suggestions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="outputs" value="Outputs&#10;JSON findings · Markdown · CSV · SARIF-like report · Remediation suggestions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="560" y="500" width="480" height="70" as="geometry" />
         </mxCell>
 

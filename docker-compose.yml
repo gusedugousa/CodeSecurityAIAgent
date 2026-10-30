@@ -12,7 +12,7 @@ services:
       APP_WORKSPACE_DIR: /app/data/workspaces
       APP_REPORTS_DIR: /app/data/reports
       MODEL_MOCK_MODE: "${MODEL_MOCK_MODE:-true}"
-      OTEL_SERVICE_NAME: security-agent-platform
+      OTEL_SERVICE_NAME: governed-ai-code-security
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_TRACES_ENABLED: "true"
       OTEL_METRICS_ENABLED: "true"
