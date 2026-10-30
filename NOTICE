@@ -1,7 +1,13 @@
 Governed AI Code Security
-Proof-of-concept prototype (v0.1.0).
+Copyright 2026 Gustavo Eduardo Gómez Garzón
 
-This software is published as a community contribution with the authorization of
-KYY Technologies Inc.
+This software is a proof-of-concept prototype. Its author prepared it as a reduced
+extract of a broader implementation developed in the course of his work with
+KYY Technologies Inc.; that broader implementation is not published here.
 
-This product is distributed under the Apache License, Version 2.0 (see LICENSE).
+KYY Technologies Inc. authorized the publication of this software as a community
+contribution on October 28, 2026, and claims no ownership interest in it. It
+contains no source code, configuration, data, or credentials of KYY Technologies
+Inc. or of its clients.
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
