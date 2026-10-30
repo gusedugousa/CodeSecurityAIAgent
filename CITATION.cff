@@ -5,6 +5,7 @@ type: software
 version: 0.1.1
 date-released: 2026-10-30
 license: Apache-2.0
+doi: 10.5281/zenodo.23819790
 repository-code: "https://github.com/gusedugousa/governed-ai-code-security"
 abstract: >-
   Proof-of-concept platform for governed, AI-assisted source-code security analysis.

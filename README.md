@@ -1,5 +1,9 @@
 # Governed AI Code Security
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23819790.svg)](https://doi.org/10.5281/zenodo.23819790)
+[![CI](https://github.com/gusedugousa/governed-ai-code-security/actions/workflows/ci.yml/badge.svg)](https://github.com/gusedugousa/governed-ai-code-security/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 > **Status: proof of concept (v0.1.0).** This is a prototype built to explore how LLM agents and
 > specialized security scanners can work together in a CI pipeline. It is not a production
 > product. See [What is real and what is not](#what-is-real-and-what-is-not).
@@ -163,6 +167,11 @@ Scaffolded only (interfaces and placeholders, no working implementation):
 - `mypy` reports known typing debt (CI runs it as non-blocking).
 - No job queue: concurrent analyses share one process.
 - AI output can be wrong. Treat findings and suggested patches as input for human review.
+
+## Citing
+
+If you use this work, please cite it via the DOI above (it always resolves to the latest version) or
+use GitHub's "Cite this repository" button, which reads [CITATION.cff](CITATION.cff).
 
 ## License
 
