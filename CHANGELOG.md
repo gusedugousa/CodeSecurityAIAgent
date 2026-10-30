@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2
+
+- Documentation: the lower half of the architecture diagram is described as the target
+  architecture for future work; the broader implementation this prototype was extracted from
+  is not published and is not described.
+- NOTICE with copyright holder and publication authorization.
+
 ## 0.1.1
 
 - English architecture diagram showing this repository and the broader solution it was extracted from.

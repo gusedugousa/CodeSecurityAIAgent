@@ -4,7 +4,7 @@
 
 The Model Context Protocol (MCP) is the emerging standard for exposing external systems
 (source control, ticketing, vulnerability databases, secrets managers) as callable tools for
-AI agents. The broader solution this prototype was extracted from integrates several MCP
+AI agents. The target architecture integrates several MCP
 servers: GitHub, Azure DevOps, Jira, SonarQube, a vulnerability database, and Vault/secrets.
 
 The MVP does **not** require any live MCP server. Standing up and operating MCP servers is

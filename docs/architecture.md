@@ -2,8 +2,8 @@
 
 ![Architecture diagram](architecture.svg)
 
-The diagram shows this repository (top) and the broader solution it was extracted from
-(bottom, not published here). See the [README](../README.md#origin-and-scope).
+The diagram shows this repository (top) and the target architecture toward which this work is
+directed (bottom, not implemented here). See the [README](../README.md#origin-and-scope).
 
 ## Proof-of-concept architecture
 
@@ -99,12 +99,10 @@ findings_count). Metrics (`app/observability/metrics.py`) and structured JSON lo
 (`app/core/logging.py` + `app/observability/events.py`) are correlated by the same `analysis_id`.
 See `docs/observability.md` for the full trace/metric/log design and local Grafana setup.
 
-## Broader solution (outside this repository, partially scaffolded here)
+## Target architecture (outside this repository, partially scaffolded here)
 
-This prototype was extracted from a larger solution that already covers much of the target
-architecture; for ownership reasons only a partial demonstration is published here. The axes
-below describe how the broader design extends this proof of concept, and where this repository
-has interface-level scaffolding for them:
+The axes below describe how the target design extends this proof of concept, and where this
+repository has interface-level scaffolding for them:
 
 - **More inputs**: GitHub/GitLab/Bitbucket/Azure DevOps webhooks, CI/CD pipeline triggers, a web
   UI — all funnel into the same `POST /api/v1/analysis` contract the MVP already exposes.

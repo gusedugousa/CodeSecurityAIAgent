@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
 title: "Governed AI Code Security"
 type: software
-version: 0.1.1
+version: 0.1.2
 date-released: 2026-10-30
 license: Apache-2.0
 doi: 10.5281/zenodo.23819790
@@ -11,7 +11,7 @@ abstract: >-
   Proof-of-concept platform for governed, AI-assisted source-code security analysis.
   It combines specialized security scanners with LLM agents orchestrated by LangGraph,
   and integrates into continuous integration through a severity gate and SARIF output.
-  It is a partial demonstration extracted from a broader solution.
+  It is a partial demonstration extracted from a broader, unpublished implementation.
 authors:
   - family-names: "Gómez Garzón"
     given-names: "Gustavo Eduardo"

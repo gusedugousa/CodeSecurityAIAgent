@@ -5,8 +5,8 @@
 Every LLM call in the platform is made on behalf of a **role**, not a hardcoded model name:
 
 - `coordinator_model` — reserved for future coordinator-level reasoning (routing decisions,
-  plan adjustment). Not heavily used by the linear MVP graph but present for the broader
-  solution's more dynamic coordinator.
+  plan adjustment). Not heavily used by the linear MVP graph but present for the target
+  architecture's more dynamic coordinator.
 - `analysis_model` — SAST/dependency finding triage and context summarization.
 - `remediation_model` — patch/explanation generation for high-severity findings.
 - `reporting_model` — executive summary generation.
@@ -49,7 +49,7 @@ be relied on for invoicing.
 
 ## Future: fallback models, retry policy, cost routing
 
-The broader solution this prototype was extracted from calls for fallback models (if the primary model errors or
+The target architecture calls for fallback models (if the primary model errors or
 times out, retry against a secondary), token budgeting per analysis, and cost-aware routing
 (cheaper model first, escalate only if needed). The MVP's `LiteLLMModelClient` already retries
 transient failures against the *same* model (`tenacity`-based, configurable via
