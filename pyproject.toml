@@ -1,9 +1,10 @@
 [project]
 name = "governed-ai-code-security"
-version = "0.1.0"
+version = "0.1.1"
 description = "Proof-of-concept AI-agentic code security analysis platform: LangGraph agents + specialized scanners + LLMs, designed for CI"
 requires-python = ">=3.11"
 readme = "README.md"
+authors = [{ name = "Gustavo Eduardo Gómez Garzón" }]
 license = { text = "Apache-2.0" }
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
