@@ -5,9 +5,9 @@
     {
       "tool": {
         "driver": {
-          "name": "security-agent-platform",
+          "name": "governed-ai-code-security",
           "version": "0.1.0",
-          "informationUri": "https://github.com/example-org/security-agent-platform",
+          "informationUri": "https://github.com/gusedugousa/governed-ai-code-security",
           "rules": [
             {
               "id": "bandit.sast",

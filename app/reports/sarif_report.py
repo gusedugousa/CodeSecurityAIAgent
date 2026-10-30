@@ -16,9 +16,9 @@ from typing import Any
 from app.reports._shared import as_dict
 
 SARIF_SCHEMA_URI = "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json"
-TOOL_NAME = "security-agent-platform"
+TOOL_NAME = "governed-ai-code-security"
 TOOL_VERSION = "0.1.0"
-TOOL_INFO_URI = "https://github.com/example-org/security-agent-platform"
+TOOL_INFO_URI = "https://github.com/gusedugousa/governed-ai-code-security"
 
 _LEVEL_BY_SEVERITY = {
     "critical": "error",

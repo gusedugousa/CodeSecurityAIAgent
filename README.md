@@ -1,10 +1,10 @@
-# Security Agent Platform
+# Governed AI Code Security
 
 > **Status: proof of concept (v0.1.0).** This is a prototype built to explore how LLM agents and
 > specialized security scanners can work together in a CI pipeline. It is not a production
 > product. See [What is real and what is not](#what-is-real-and-what-is-not).
 
-An AI-agentic code security analysis platform. A FastAPI service runs a LangGraph workflow over a
+Governed, AI-assisted source-code security analysis. A FastAPI service runs a LangGraph workflow over a
 source repository: specialized scanners find issues, their output is normalized into typed
 findings, and an LLM (any provider, via LiteLLM) triages, explains and proposes fixes. Results
 come out as JSON, Markdown, CSV and SARIF, ready for CI gates and GitHub code scanning.
@@ -146,6 +146,10 @@ Scaffolded only (interfaces and placeholders, no working implementation):
 - `mypy` reports known typing debt (CI runs it as non-blocking).
 - No job queue: concurrent analyses share one process.
 - AI output can be wrong. Treat findings and suggested patches as input for human review.
+
+## License
+
+Apache-2.0, see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 ## Development
 

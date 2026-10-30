@@ -4,7 +4,7 @@
 
 variable "image_uri" {
   type    = string
-  default = "REPLACE_ME.dkr.ecr.us-east-1.amazonaws.com/security-agent-platform:latest"
+  default = "REPLACE_ME.dkr.ecr.us-east-1.amazonaws.com/governed-ai-code-security:latest"
 }
 
 variable "database_url_secret_arn" {
@@ -12,11 +12,11 @@ variable "database_url_secret_arn" {
 }
 
 resource "aws_ecs_cluster" "this" {
-  name = "security-agent-platform"
+  name = "governed-ai-code-security"
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "security-agent-platform"
+  family                   = "governed-ai-code-security"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "512"
@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "app" {
 }
 
 resource "aws_ecs_service" "app" {
-  name            = "security-agent-platform"
+  name            = "governed-ai-code-security"
   cluster         = aws_ecs_cluster.this.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = 1

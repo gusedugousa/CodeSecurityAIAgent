@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: OWNER/REPO_OF_THIS_PLATFORM   # replace once the repo name is final
+          repository: gusedugousa/governed-ai-code-security
           path: platform
 
       - name: Start the platform (mock model mode unless a key is provided)

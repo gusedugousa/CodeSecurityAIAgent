@@ -1,9 +1,16 @@
 [project]
-name = "security-agent-platform"
+name = "governed-ai-code-security"
 version = "0.1.0"
 description = "Proof-of-concept AI-agentic code security analysis platform: LangGraph agents + specialized scanners + LLMs, designed for CI"
 requires-python = ">=3.11"
 readme = "README.md"
+license = { text = "Apache-2.0" }
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Security",
+]
+
 dependencies = [
     "fastapi>=0.111.0",
     "uvicorn[standard]>=0.30.0",
@@ -43,6 +50,10 @@ dev = [
     "ruff>=0.4.8",
     "mypy>=1.10.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/gusedugousa/governed-ai-code-security"
+Issues = "https://github.com/gusedugousa/governed-ai-code-security/issues"
 
 [build-system]
 requires = ["setuptools>=68.0"]
